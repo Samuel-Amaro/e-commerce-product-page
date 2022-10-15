@@ -1,0 +1,28 @@
+.Header{
+    padding: 21px 0 0 0;
+}
+
+.header__row-Group:first-child{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.header__Button-Menu{
+    display: block;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.header__Logo{
+    display: block;
+}
+
+.header__Logo img, .header__Button-Menu img{
+    display: block;
+    max-width: 100%;
+}
+
+
