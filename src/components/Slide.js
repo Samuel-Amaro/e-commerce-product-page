@@ -1,3 +1,4 @@
+import "./Slide.css";
 
 export default function Slide(props) {
     return(

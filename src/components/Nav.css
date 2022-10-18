@@ -1,3 +1,42 @@
-.Nav{
-    display: none;
+.Nav {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+  background-color: var(--white);
+  padding: 23.5px 0 0 24.5px;
+  width: 251px;
+}
+
+.nav_Hidden {
+  display: none;
+}
+
+.nav__Button-Close-Menu {
+  display: block;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin-bottom: 53px;
+}
+
+.nav__List{
+    list-style: none;
+}
+
+.nav__Link{
+    display: block;
+    text-decoration: none;
+    color: var(--very-dark-blue);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.nav__Item:nth-child(-n+4) {
+    margin-bottom: 25.3px;
 }

@@ -1,0 +1,12 @@
+.Cart-Button{
+    display: block;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    background-image: url(../images/icon-cart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 22px;
+    height: 20px;
+}
