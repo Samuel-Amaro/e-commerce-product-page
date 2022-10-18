@@ -1,12 +1,5 @@
 import Slide from "./Slide";
-/*import image1Thumbnail from "../images/image-product-1-thumbnail.jpg";
-import image2Thumbnail from "../images/image-product-2-thumbnail.jpg";
-import image3Thumbnail from "../images/image-product-3-thumbnail.jpg";
-import image4Thumbnail from "../images/image-product-4-thumbnail.jpg";
-*/
-import iconNext from "../images/icon-next.svg";
-import iconPrevious from "../images/icon-previous.svg";
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import "./ProductImages.css";
 
 export default function ProductImages() {
@@ -35,16 +28,23 @@ export default function ProductImages() {
     },
   ];
 
-  function nextSlide(n) {
-    
-  }
-
   function handleButtonsSlide(event) {
     //button previous slide
     if (event.target.classList.contains("Product-Images__button-Next-Slide")) {
-      slider.current.scrollLeft += slider.current.offsetWidth;
+      if (
+        slider.current.scrollLeft <
+        slider.current.scrollWidth - slider.current.offsetWidth
+      ) {
+        slider.current.scrollLeft += slider.current.offsetWidth;
+      } else {
+        slider.current.scrollLeft = 0;
+      }
     } else {
-      slider.current.scrollLeft -= slider.current.offsetWidth;
+      if (slider.current.scrollLeft > 0) {
+        slider.current.scrollLeft -= slider.current.offsetWidth;
+      } else {
+        slider.current.scrollLeft = slider.current.scrollWidth;
+      }
     }
   }
 
@@ -61,13 +61,21 @@ export default function ProductImages() {
           className="Product-Images__button-Previous-Slide"
           aria-label="Button from previous Slide Image Products"
           value="Previous Slide"
+          title="Previous Image Product"
           onPointerDown={(event) => {
             handleButtonsSlide(event);
           }}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft") {
+              handleButtonsSlide(event);
+            }
+          }}
+        ></button>
+        <ul
+          className="Product-Images__list-Images-Product"
+          ref={slider}
+          aria-label="List All images from products"
         >
-          {/*<img src={iconPrevious} alt="" aria-hidden="true" />*/}
-        </button>
-        <ul className="Product-Images__list-Images-Product" ref={slider}>
           {dataSlide.map((data) => {
             count += 1;
             return (
@@ -85,12 +93,16 @@ export default function ProductImages() {
           className="Product-Images__button-Next-Slide"
           aria-label="Button from next Slide Image Products"
           value="Next Slide"
+          title="Next Image Product"
           onPointerDown={(event) => {
             handleButtonsSlide(event);
           }}
-        >
-          {/*<img src={iconNext} alt="" aria-hidden="true" />*/}
-        </button>
+          onKeyDown={(event) => {
+            if (event.key === "ArrowRight") {
+              handleButtonsSlide(event);
+            }
+          }}
+        ></button>
       </div>
       {/*desktop view lightbox gallery by clicking on the large product image*/}
     </div>

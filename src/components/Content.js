@@ -1,6 +1,7 @@
 import iconMinus from "../images/icon-minus.svg";
 import iconPlus from "../images/icon-plus.svg";
-import iconCart from "../images/icon-cart.svg";
+import iconCart from "../images/icon-cart-white.svg";
+import "./Content.css";
 
 export default function Content() {
     return (
@@ -30,7 +31,7 @@ export default function Content() {
             </button>
             <span className="Main__view-Quantity" aria-live="assertive" aria-atomic="true">0</span>
             <button
-              className="Main__button-Decrement-Quantity"
+              className="Main__button-Increment-Quantity"
               type="button"
               aria-label="Button increment quantidade orders product"
             >
@@ -41,6 +42,7 @@ export default function Content() {
             className="Main__button-Add-Produc-Cart"
             type="button"
             aria-label="Button Add Produc orders in cart"
+            title="Add products ordes in cart"
           >
             <img src={iconCart} alt="" aria-hidden="true" /> Add to cart
           </button>

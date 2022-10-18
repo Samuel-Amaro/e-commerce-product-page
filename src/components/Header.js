@@ -7,9 +7,10 @@ import "./Header.css";
 import React, {useEffect, useState} from "react";
 
 export default function Header() {
-    const [btnMenuIsPressed, setBtnMenuIsPressed] = useState(false);
+    const [btnMenuIsClicked, setBtnMenuIsClicked] = useState(false);
+
     useEffect(() => {
-      if(btnMenuIsPressed) {
+      if (btnMenuIsClicked) {
         document.body.setAttribute("class", "body body_overlay");
       }
     });
@@ -21,21 +22,35 @@ export default function Header() {
             type="button"
             className="header__Button-Menu"
             aria-label="Button Menu"
-            aria-expanded={btnMenuIsPressed ? "false" : "true"}
-            onClick={() => {
-                setBtnMenuIsPressed(!btnMenuIsPressed);
+            title="Expanded Menu"
+            aria-expanded={btnMenuIsClicked ? "false" : "true"}
+            onPointerDown={() => {
+              setBtnMenuIsClicked(!btnMenuIsClicked);
+            }}
+            onKeyDown={(event) => {
+              //event.preventDefault();
+              if (event.code === "Enter") {
+                setBtnMenuIsClicked(!btnMenuIsClicked);
+                event.target.blur();
+              }
             }}
           >
             <img src={iconMenu} alt="" aria-hidden="true" />
           </button>
           <div className="header__Logo">
-          <img
-            src={logo}
-            alt="logo sneakers product"
-            className="header__Logo"
-          />
+            <img
+              src={logo}
+              alt="logo sneakers product"
+              className="header__Logo"
+            />
           </div>
-          {btnMenuIsPressed ? <Nav setBtnMenuIsPressed={setBtnMenuIsPressed}/> : ""}
+          {btnMenuIsClicked ? (
+            <Nav
+              setBtnMenuIsClicked={setBtnMenuIsClicked}
+          />
+          ) : (
+            ""
+          )}
         </div>
         <div className="header__row-Group">
           <Cart />

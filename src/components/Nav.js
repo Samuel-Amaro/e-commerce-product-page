@@ -1,6 +1,6 @@
 import iconClose from "../images/icon-close.svg";
 import "./Nav.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Nav(props) {
   const [btnCloseIsPressed, setBtnCloseIsPressed] = useState(false);
@@ -8,7 +8,7 @@ export default function Nav(props) {
   useEffect(() => {
     if (btnCloseIsPressed) {
       document.body.classList.remove("body_overlay");
-      props.setBtnMenuIsPressed(false);
+      props.setBtnMenuIsClicked(false);
     }
   });
 
@@ -18,8 +18,16 @@ export default function Nav(props) {
         type="button"
         className="nav__Button-Close-Menu"
         aria-label="Button Close Menu"
-        onClick={() => {
+        title="Close Menu"
+        onPointerDown={() => {
           setBtnCloseIsPressed(!btnCloseIsPressed);
+        }}
+        onKeyDown={(event) => {
+          //event.preventDefault();
+          if(event.code === "Enter") {
+            setBtnCloseIsPressed(!btnCloseIsPressed);
+            event.target.blur();
+          }
         }}
       >
         <img src={iconClose} alt="" aria-hidden="true" />

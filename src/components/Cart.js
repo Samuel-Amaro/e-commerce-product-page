@@ -1,10 +1,14 @@
-import iconCart from "../images/icon-cart.svg";
 import "./Cart.css";
 
 export default function Cart() {
     return (
-        <button type="button" className="Cart-Button" aria-label="Button Cart from products" value="Cart" name="Cart Products">
-            {/*<img src={iconCart} alt="" aria-hidden="true"/>*/}
-        </button>
+      <button
+        type="button"
+        className="Cart-Button"
+        aria-label="Button Cart from products selected and resume orders"
+        value="Cart"
+        name="Cart Products"
+        title="Cart products selected and resume orders"
+      ></button>
     );
 }
