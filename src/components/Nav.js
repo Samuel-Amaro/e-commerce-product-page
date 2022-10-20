@@ -1,6 +1,6 @@
 import iconClose from "../images/icon-close.svg";
 import "./Nav.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Nav(props) {
   const [btnCloseIsPressed, setBtnCloseIsPressed] = useState(false);

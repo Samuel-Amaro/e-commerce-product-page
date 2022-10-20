@@ -5,7 +5,8 @@
 .Product-Images__container-Slides{
     position: relative;
     height: 300px;
-    width: 375px;
+    /*width: 375px;*/
+    max-width: 375px;
     /*margin: 0 auto;*/
 }
 

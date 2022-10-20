@@ -8,4 +8,5 @@
     width: 375px;
     height: 300px;
     object-fit: cover;
+    max-width: 375px;
 }
