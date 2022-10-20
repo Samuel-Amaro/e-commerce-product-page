@@ -88,8 +88,7 @@ export default function Header(props) {
                   />
                   <div className="header__datas-Order">
                     <h4 className="header__name-Product">
-                      {/*Fall Limited Edition Sneakers*/}
-                      Autumn Limited Edition
+                      Fall Limited Edition Sneakers
                     </h4>
                     <p className="header__values">
                       <span className="header__price-Product">$125.00</span> x{" "}
@@ -106,6 +105,14 @@ export default function Header(props) {
                     type="button"
                     title="Delete order product"
                     aria-label="Delete order product"
+                    onPointerDown={(event) => {
+                      props.setQtdOrdersProduct(0);
+                    }}
+                    onKeyDown={(event) => {
+                      if(event.code === "Enter") {
+                        props.setQtdOrdersProduct(0);
+                      }
+                    }}
                   >
                     <img src={iconDelete} alt="" aria-hidden="true" />
                   </button>

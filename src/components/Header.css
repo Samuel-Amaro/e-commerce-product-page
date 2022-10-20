@@ -126,6 +126,11 @@
   width: 50px;
   height: 50px;
   border-radius: 3px;
+  margin-right: 15px;
+}
+
+.header__datas-Order{
+  margin-right: 40px;
 }
 
 .header__order{
@@ -133,7 +138,6 @@
   flex-flow: row nowrap;
   align-items: center;
   margin-bottom: 26px;
-  gap: 15px;
 }
 
 .header__name-Product, .header__values{
@@ -143,11 +147,11 @@
 }
 
 .header__name-Product{
+  width: 189px;
   margin-bottom: 8px;
-  width: 185px;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  word-wrap: normal;
-  word-break: break-all;
 }
 
 .header__values, .header__qtd-Order, .header__payment-Amount{
@@ -189,4 +193,5 @@
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  border-radius: 9px;
 }
