@@ -52,6 +52,7 @@
   background-position: center;
   width: 22px;
   height: 20px;
+  position: relative;
 }
 
 .Cart-Button:hover,
@@ -194,4 +195,25 @@
   font-weight: 700;
   cursor: pointer;
   border-radius: 9px;
+}
+
+.header__notifier-Qtd{
+  display: block;
+  background-color: var(--orange);
+  color: var(--white);
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 0px 6px;
+  text-align: center;
+  position: absolute;
+  border-radius: 15px;
+  right: -8px;
+  top: -6px;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 960px){
+  .header__Button-Menu{
+    display: none;
+  }
 }

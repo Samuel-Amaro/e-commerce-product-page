@@ -1,9 +1,10 @@
 import iconClose from "../images/icon-close.svg";
 import "./Nav.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function Nav(props) {
   const [btnCloseIsPressed, setBtnCloseIsPressed] = useState(false);
+  const nav = useRef(null);
 
   useEffect(() => {
     if (btnCloseIsPressed) {
@@ -12,19 +13,29 @@ export default function Nav(props) {
     }
   });
 
+  //arrumar aqui: esta mostrando e não mostrando o menu no mobile-first
   return (
-    <nav className={btnCloseIsPressed ? "nav_Hidden" : "Nav"}>
+    <nav
+      className={
+        props.btnMenuIsClicked
+          ? "Nav"
+          : btnCloseIsPressed
+          ? "Nav nav_Hidden"
+          : "Nav nav_Hidden"
+      }
+      ref={nav}
+    >
       <button
         type="button"
         className="nav__Button-Close-Menu"
         aria-label="Button Close Menu"
         title="Close Menu"
         onPointerDown={() => {
-          setBtnCloseIsPressed(!btnCloseIsPressed);
+          setBtnCloseIsPressed(!btnCloseIsPressed); 
         }}
         onKeyDown={(event) => {
           //event.preventDefault();
-          if(event.code === "Enter") {
+          if (event.code === "Enter") {
             setBtnCloseIsPressed(!btnCloseIsPressed);
             event.target.blur();
           }

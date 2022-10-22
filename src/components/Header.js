@@ -46,11 +46,19 @@ export default function Header(props) {
             className="header__Logo"
           />
         </div>
-        {btnMenuIsClicked ? (
+        {/*
+          btnMenuIsClicked ? (
           <Nav setBtnMenuIsClicked={setBtnMenuIsClicked} />
         ) : (
           ""
-        )}
+        )
+        */}
+        {
+          <Nav
+            setBtnMenuIsClicked={setBtnMenuIsClicked}
+            btnMenuIsClicked={btnMenuIsClicked}
+          />
+        }
       </div>
       <div className="header__row-Group">
         <button
@@ -68,7 +76,16 @@ export default function Header(props) {
               setBtnCartIsClicked(!btnCartIsClicked);
             }
           }}
-        ></button>
+        >
+          {props.qtdOrdersProduct > 0 ? (
+            <span className="header__notifier-Qtd">
+              {props.qtdOrdersProduct}
+            </span>
+          ) : (
+            ""
+          )}
+        </button>
+
         <div className="header__Profile">
           <img src={profile} alt="Profile user" className="header__Profile" />
         </div>
@@ -109,7 +126,7 @@ export default function Header(props) {
                       props.setQtdOrdersProduct(0);
                     }}
                     onKeyDown={(event) => {
-                      if(event.code === "Enter") {
+                      if (event.code === "Enter") {
                         props.setQtdOrdersProduct(0);
                       }
                     }}
