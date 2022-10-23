@@ -46,13 +46,6 @@ export default function Header(props) {
             className="header__Logo"
           />
         </div>
-        {/*
-          btnMenuIsClicked ? (
-          <Nav setBtnMenuIsClicked={setBtnMenuIsClicked} />
-        ) : (
-          ""
-        )
-        */}
         {
           <Nav
             setBtnMenuIsClicked={setBtnMenuIsClicked}

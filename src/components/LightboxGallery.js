@@ -1,62 +1,42 @@
-import React, {useRef} from "react";
+import React, { useState } from "react";
 import Slide from "./Slide";
 import "./LightboxGallery.css";
 
 export default function LightboxGallery(props) {
-  let count = 0;
-  const lightbox = useRef(null);
+  let count = 1;
+  let slidesLightbox = props.dataSlide.map((data) => {
+    return (
+      <Slide imageSlide={data.url} descriptionImage={data.descriptionImage} />
+    );
+  });
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [slides, setSlides] = useState([slidesLightbox[slideIndex]]);
 
-  function nextSlide() {
-    console.log("ScrollLeft: " + lightbox.current.scrollLeft);
-    console.log("ScrollWidth: " + lightbox.current.scrollWidth);
-    console.log("offsetWidth: " + lightbox.current.offsetWidth);
-    //ideia, para evitar varios cliques, e fazer algotimo para descobrir quando clico duas vezes seguida se preciso andar ou não
-    //onde estou atualmente, em qual slide estou e se tem muitos a frente ou atras
-    //posição atual do slide
-    let currentSlide = lightbox.current.scrollLeft;
-    /*if (
-      currentSlide.current.scrollLeft <
-      currentSlide.current.scrollWidth - currentSlide.current.offsetWidth
-    ) {
-      currentSlide.current.scrollLeft += currentSlide.current.offsetWidth;
-    } else {
-      currentSlide.current.scrollLeft = 0;
+  function setCurrentSlide(index) {
+    //vai para primeiro slide
+    if (index > slidesLightbox.length) {
+      setSlideIndex(0);
+      setSlides([slidesLightbox[0]]);
     }
-    */
-  }
-
-  function previosSlide(currentSlide) {
-    if (currentSlide.current.scrollLeft > 0) {
-      currentSlide.current.scrollLeft -= currentSlide.current.offsetWidth;
-    } else {
-      currentSlide.current.scrollLeft = currentSlide.current.scrollWidth;
+    //vai para o ultimo slide
+    if (index < 1) {
+      setSlideIndex(slidesLightbox.length - 1);
+      setSlides([slidesLightbox[slidesLightbox.length - 1]]);
     }
-  }
-
-  let previosTargetElem = null;
-
-  //demos slide desktop
-  function handleDemosSlide(event) {
-    /*if(previosTargetElem !== event.target && previosTargetElem !== null) {
-        nextSlide(lightbox);
-    }
-    previosTargetElem = event.target;
-    */
-   nextSlide(lightbox);
+    //seta slide comun entre inicio e fim
+    setSlideIndex(index);
+    setSlides([slidesLightbox[index]]);
   }
 
   return (
     <div className="Product-Images__lightbox-Gallery">
       {/*cada clique em um demo tem que correponder a uma imagem de produto clicado*/}
-      <ul className="Product-Images__list-Images-Lightbox" ref={lightbox}>
-        {props.dataSlide.map((data) => {
+      <ul className="Product-Images__list-Images-Lightbox">
+        {slides.map((slideElem) => {
           count += 1;
           return (
             <li className="Product-Images-item-Lightbox" key={count}>
-              <Slide
-                imageSlide={data.url}
-                descriptionImage={data.descriptionImage}
-              />
+              {slideElem}
             </li>
           );
         })}
@@ -69,8 +49,14 @@ export default function LightboxGallery(props) {
               className="Product-Images__item-Demo"
               key={count}
               tabIndex="0"
+              title="Toggle to image"
               onPointerDown={(event) => {
-                handleDemosSlide(event);
+                setCurrentSlide(data.index)
+              }}
+              onKeyDown={(event) => {
+                if (event.code === "Enter") {
+                  setCurrentSlide(data.index);
+                }
               }}
             >
               <img src={data.thumbnail} alt="" aria-hidden="true" />

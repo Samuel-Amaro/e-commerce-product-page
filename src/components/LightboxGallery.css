@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     flex: 0 0 100%;
+    transition: 0 all 2s ease;
   }
 
   .Product-Images__list-Demos {
