@@ -85,70 +85,69 @@ export default function Header(props) {
             ""
           )}
         </button>
-
         <div className="header__Profile">
           <img src={profile} alt="Profile user" className="header__Profile" />
         </div>
-      </div>
-      {btnCartIsClicked && (
-        <div className="header__basket-Products">
-          <h3 className="header__title-Basket">Cart</h3>
-          <hr className="header__diviser" />
-          <div className="header__basket">
-            {props.qtdOrdersProduct > 0 ? (
-              <div className="header__content-Basket">
-                <div className="header__order">
-                  <img
-                    src={imgProduct}
-                    alt="Product sneakers, a pair of tennis shoes, the pair of the left foot standing on the tip with the sole being shown, and the pair of the right foot resting on a floor."
-                    className="header__img-Product"
-                  />
-                  <div className="header__datas-Order">
-                    <h4 className="header__name-Product">
-                      Fall Limited Edition Sneakers
-                    </h4>
-                    <p className="header__values">
-                      <span className="header__price-Product">$125.00</span> x{" "}
-                      <span className="header__qtd-Order">
-                        {props.qtdOrdersProduct}
-                      </span>{" "}
-                      <span className="header__payment-Amount">
-                        ${(125 * props.qtdOrdersProduct).toFixed(2)}
-                      </span>
-                    </p>
+        {btnCartIsClicked && (
+          <div className="header__basket-Products">
+            <h3 className="header__title-Basket">Cart</h3>
+            <hr className="header__diviser" />
+            <div className="header__basket">
+              {props.qtdOrdersProduct > 0 ? (
+                <div className="header__content-Basket">
+                  <div className="header__order">
+                    <img
+                      src={imgProduct}
+                      alt="Product sneakers, a pair of tennis shoes, the pair of the left foot standing on the tip with the sole being shown, and the pair of the right foot resting on a floor."
+                      className="header__img-Product"
+                    />
+                    <div className="header__datas-Order">
+                      <h4 className="header__name-Product">
+                        Fall Limited Edition Sneakers
+                      </h4>
+                      <p className="header__values">
+                        <span className="header__price-Product">$125.00</span> x{" "}
+                        <span className="header__qtd-Order">
+                          {props.qtdOrdersProduct}
+                        </span>{" "}
+                        <span className="header__payment-Amount">
+                          ${(125 * props.qtdOrdersProduct).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
+                    <button
+                      className="header__btn-Delete-Order"
+                      type="button"
+                      title="Delete order product"
+                      aria-label="Delete order product"
+                      onPointerDown={(event) => {
+                        props.setQtdOrdersProduct(0);
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.code === "Enter") {
+                          props.setQtdOrdersProduct(0);
+                        }
+                      }}
+                    >
+                      <img src={iconDelete} alt="" aria-hidden="true" />
+                    </button>
                   </div>
                   <button
-                    className="header__btn-Delete-Order"
+                    className="header__btn-Checkout"
                     type="button"
-                    title="Delete order product"
-                    aria-label="Delete order product"
-                    onPointerDown={(event) => {
-                      props.setQtdOrdersProduct(0);
-                    }}
-                    onKeyDown={(event) => {
-                      if (event.code === "Enter") {
-                        props.setQtdOrdersProduct(0);
-                      }
-                    }}
+                    title="Chekout"
+                    aria-label="Checkout orders"
                   >
-                    <img src={iconDelete} alt="" aria-hidden="true" />
+                    Checkout
                   </button>
                 </div>
-                <button
-                  className="header__btn-Checkout"
-                  type="button"
-                  title="Chekout"
-                  aria-label="Checkout orders"
-                >
-                  Checkout
-                </button>
-              </div>
-            ) : (
-              <p className="header__description-Empty">Your cart is empty.</p>
-            )}
+              ) : (
+                <p className="header__description-Empty">Your cart is empty.</p>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }

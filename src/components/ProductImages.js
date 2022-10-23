@@ -1,10 +1,10 @@
-import Slide from "./Slide";
-import React, { useRef } from "react";
+import React from "react";
 import "./ProductImages.css";
+import Slider from "./Slider";
+import LightboxGallery from "./LightboxGallery";
 
 export default function ProductImages() {
-  const slider = useRef(null);
-  let count = 0;
+
   let dataSlide = [
     {
       url: "../images/image-product-1.jpg",
@@ -32,108 +32,12 @@ export default function ProductImages() {
     },
   ];
 
-  function handleButtonsSlide(event) {
-    //button previous slide
-    if (event.target.classList.contains("Product-Images__button-Next-Slide")) {
-      if (
-        slider.current.scrollLeft <
-        slider.current.scrollWidth - slider.current.offsetWidth
-      ) {
-        slider.current.scrollLeft += slider.current.offsetWidth;
-      } else {
-        slider.current.scrollLeft = 0;
-      }
-    } else {
-      if (slider.current.scrollLeft > 0) {
-        slider.current.scrollLeft -= slider.current.offsetWidth;
-      } else {
-        slider.current.scrollLeft = slider.current.scrollWidth;
-      }
-    }
-  }
-
   return (
     <div className="Product-Images">
       {/*Mobile view slideShow images*/}
-      <div
-        className="Product-Images__container-Slides"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <button
-          type="button"
-          className="Product-Images__button-Previous-Slide"
-          aria-label="Button from previous Slide Image Products"
-          value="Previous Slide"
-          title="Previous Image Product"
-          onPointerDown={(event) => {
-            handleButtonsSlide(event);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === "ArrowLeft") {
-              handleButtonsSlide(event);
-            }
-          }}
-        ></button>
-        <ul
-          className="Product-Images__list-Images-Product"
-          ref={slider}
-          aria-label="List All images from products"
-        >
-          {dataSlide.map((data) => {
-            count += 1;
-            return (
-              <li className="Product-Images-item-Image" key={count}>
-                <Slide
-                  imageSlide={data.url}
-                  descriptionImage={data.descriptionImage}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        <button
-          type="button"
-          className="Product-Images__button-Next-Slide"
-          aria-label="Button from next Slide Image Products"
-          value="Next Slide"
-          title="Next Image Product"
-          onPointerDown={(event) => {
-            handleButtonsSlide(event);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === "ArrowRight") {
-              handleButtonsSlide(event);
-            }
-          }}
-        ></button>
-      </div>
+      {<Slider dataSlide={dataSlide} />}
       {/*desktop view lightbox gallery by clicking on the large product image*/}
-      <div className="Product-Images__lightbox-Gallery">
-        <ul className="Product-Images__list-Images-Lightbox">
-          {dataSlide.map((data) => {
-            count += 1;
-            return (
-              <li className="Product-Images-item-Lightbox" key={count}>
-                <Slide
-                  imageSlide={data.url}
-                  descriptionImage={data.descriptionImage}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        <ul className="Product-Images__list-Demos">
-          {
-            dataSlide.map((data) => {
-              count += 1;
-              return <li className="Product-Images__item-Demo" key={count}>
-                <img src={data.thumbnail} alt="" aria-hidden="true"/>
-              </li>;
-            })
-          }
-        </ul>
-      </div>
+      {<LightboxGallery dataSlide={dataSlide} />}
     </div>
   );
 }
