@@ -10,6 +10,7 @@
   object-fit: cover;
   max-width: 100%; /*400px*/
   max-height: 100%; /*100%*/
+  transition: all 2s ease;
 }
 
 @media screen and (min-width: 401px) {
@@ -19,5 +20,6 @@
     max-width: 100%;
     object-fit: contain;
     max-height: 100%;
+    transition: all 2s ease;
   }
 }

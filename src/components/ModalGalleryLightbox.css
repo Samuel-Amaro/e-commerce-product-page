@@ -1,0 +1,108 @@
+.ModalGalleryLightbox {
+    display: none;
+  }
+
+@media screen and (min-width: 960px) {
+  .ModalGalleryLightbox {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute; /*fixed*/
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    padding: 88px 0;
+  }
+
+  .ModalGalleryLightbox__content {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .ModalGalleryLightbox__btn-Close {
+    display: block;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    background-image: url(../images/icon-close-white.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    width: 22px;
+    height: 22px;
+    margin: 0 0 23px auto;
+  }
+
+  .ModalGalleryLightbox__btn-Close img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .ModalGalleryLightbox__btn-Close:hover,
+  .ModalGalleryLightbox__btn-Close:focus {
+    cursor: pointer;
+    background-image: url(../images/icon-close-hover.svg);
+  }
+
+  .ModalGalleryLightbox__button-Previous-Slide,
+  .ModalGalleryLightbox__button-Next-Slide {
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 1080;
+  }
+
+  .ModalGalleryLightbox__button-Previous-Slide,
+  .ModalGalleryLightbox__button-Next-Slide {
+    display: block;
+    appearance: none;
+    border: none;
+    background-color: var(--white);
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 13px;
+  }
+
+  .ModalGalleryLightbox__button-Previous-Slide {
+    background-image: url(../images/icon-previous.svg);
+    top: 43%;
+    left: -28px;
+  }
+
+  .ModalGalleryLightbox__button-Next-Slide {
+    background-image: url(../images/icon-next.svg);
+    background-position: 22px center;
+    top: 43%;
+    right: -28.5px;
+  }
+
+  .ModalGalleryLightbox__button-Next-Slide:hover,
+  .ModalGalleryLightbox__button-Next-Slide:focus {
+    background-image: url(../images/icon-next-orangesvg.svg);
+  }
+
+  .ModalGalleryLightbox__button-Previous-Slide:hover,
+  .ModalGalleryLightbox__button-Previous-Slide:focus {
+    background-image: url(../images/icon-previous-orange.svg);
+  }
+
+  .ModalGalleryLightbox__list-Images-Product {
+    /*display: flex;*/
+    /*flex-flow: row nowrap;*/
+    max-width: 550px;
+    /*overflow: hidden;*/
+    /*margin: 0 auto 32px auto;
+    border-radius: 12px;*/
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .ModalGalleryLightbox__item-Image{
+    transition: all 2s ease;
+  }
+}

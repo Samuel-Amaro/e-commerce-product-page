@@ -81,7 +81,8 @@
   background-color: var(--white);
   z-index: 990;
   top: 76px;
-  left: 8px;
+  /*left: 8px;*/
+  right: 7px;
   border-radius: 10px;
   max-width: 361px;
   width: 100%;

@@ -147,7 +147,10 @@
 
   .Main {
     display: grid;
-    grid-template-columns: repeat(2, minmax(min-content, 1fr));
+    /*grid-template-columns: repeat(2, minmax(min-content, 1fr));*/
+    grid-template-columns: 444px minmax(min-content, 445px);
+    justify-content: center;
+    gap: 50px;
   }
 
   .Main__product-Brand {
@@ -187,5 +190,11 @@
     padding: 19px 16px 19px 16px;
     margin-bottom: 0;
     gap: 45px;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .Main {
+    gap: 125px;
   }
 }

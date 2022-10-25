@@ -1,13 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import "./DemoThumbnail.css";
 
 export default function DemoThumbnail(props) {
-    const [demoActive, setDemoActive] = useState(false);
-    console.log("slideIndex: " + props.slideIndex);
-    console.log("index: " + props.index);
     return (
       <li
-        className={props.slideIndex === props.index
+        className={
+          props.slideIndex === props.index
             ? "Product-Images__item-Demo Product-Images__item-Demo_active"
             : "Product-Images__item-Demo"
         }
@@ -22,7 +20,6 @@ export default function DemoThumbnail(props) {
             props.setCurrentSlide(props.index);
           }
         }}
-        key={props.index}
       >
         <img src={props.thumbnail} alt="" aria-hidden="true" />
       </li>
