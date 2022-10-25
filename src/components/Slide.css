@@ -5,11 +5,11 @@
 
 .Product-Images__slide img {
   display: block;
-  width: 400px; /*375px*/
-  height: 300px;
+  width: 100%; /*375px or 400px*/
+  height: 100%; /*300px*/
   object-fit: cover;
-  max-width: 400px; /*375px*/
-  max-height: 300px;
+  max-width: 100%; /*400px*/
+  max-height: 100%; /*100%*/
 }
 
 @media screen and (min-width: 401px) {

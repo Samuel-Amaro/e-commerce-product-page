@@ -1,37 +1,33 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Slide from "./Slide";
 import "./Slider.css";
 
 export default function Slider(props) {
   const slider = useRef(null);
   let count = 0;
+  const storageSlidesCarrousel = props.dataSlide.map((data) => {
+    count += 1;
+    return (
+      <li className="Product-Images-item-Image" key={count}>
+        <Slide imageSlide={data.url} descriptionImage={data.descriptionImage} />
+      </li>
+    );
+  });
+  const [currentIndexCarrousel, setCurrentIndexCarrousel] = useState(0);
+  const [slides, setSlides] = useState([storageSlidesCarrousel[currentIndexCarrousel]]);
 
-  function nextSlide(currentSlide) {
-    if (
-      currentSlide.current.scrollLeft <
-      currentSlide.current.scrollWidth - currentSlide.current.offsetWidth
-    ) {
-      currentSlide.current.scrollLeft += currentSlide.current.offsetWidth;
-    } else {
-      currentSlide.current.scrollLeft = 0;
-    }
-  }
-
-  function previosSlide(currentSlide) {
-    if (currentSlide.current.scrollLeft > 0) {
-      currentSlide.current.scrollLeft -= currentSlide.current.offsetWidth;
-    } else {
-      currentSlide.current.scrollLeft = currentSlide.current.scrollWidth;
-    }
-  }
-
-  //mobile buttons slide previous e next
-  function handleButtonsSlide(event) {
-    //button previous slide
-    if (event.target.classList.contains("Product-Images__button-Next-Slide")) {
-      nextSlide(slider);
-    } else {
-      previosSlide(slider);
+  function setCurrentSlide(index) {
+    //vai para o primeiro slide
+    if(index > (storageSlidesCarrousel.length - 1)) {
+      setCurrentIndexCarrousel(0);
+      setSlides([storageSlidesCarrousel[0]]);
+    }else if (index < 0) {
+      //vai para o ultimo slide
+      setCurrentIndexCarrousel(storageSlidesCarrousel.length - 1);
+      setSlides([storageSlidesCarrousel[storageSlidesCarrousel.length - 1]]);
+    }else{
+      setCurrentIndexCarrousel(index);
+      setSlides([storageSlidesCarrousel[index]]);
     }
   }
 
@@ -48,11 +44,11 @@ export default function Slider(props) {
         value="Previous Slide"
         title="Previous Image Product"
         onPointerDown={(event) => {
-          handleButtonsSlide(event);
+          setCurrentSlide(currentIndexCarrousel - 1);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") {
-            handleButtonsSlide(event);
+            setCurrentSlide(currentIndexCarrousel - 1);
           }
         }}
       ></button>
@@ -61,17 +57,7 @@ export default function Slider(props) {
         ref={slider}
         aria-label="List All images from products"
       >
-        {props.dataSlide.map((data) => {
-          count += 1;
-          return (
-            <li className="Product-Images-item-Image" key={count}>
-              <Slide
-                imageSlide={data.url}
-                descriptionImage={data.descriptionImage}
-              />
-            </li>
-          );
-        })}
+        {slides}
       </ul>
       <button
         type="button"
@@ -80,11 +66,11 @@ export default function Slider(props) {
         value="Next Slide"
         title="Next Image Product"
         onPointerDown={(event) => {
-          handleButtonsSlide(event);
+          setCurrentSlide(currentIndexCarrousel + 1);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight") {
-            handleButtonsSlide(event);
+            setCurrentSlide(currentIndexCarrousel + 1);
           }
         }}
       ></button>

@@ -11,9 +11,9 @@
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
-    max-width: 445px;
+    max-width: 444px;
     overflow: hidden;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 32px auto;
     border-radius: 12px;
   }
 
@@ -30,20 +30,7 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    max-width: 445px;
+    max-width: 444px;
     margin: 0 auto;
-  }
-
-  .Product-Images__item-Demo {
-    flex: 0 0 92px;
-  }
-
-  .Product-Images__item-Demo img {
-    display: block;
-    max-width: 100%;
-    border-radius: 10px;
-    /*
-    border: 2px solid #d8874f;
-    */
   }
 }

@@ -1,3 +1,9 @@
 .Container{
     padding-bottom: 88.07px;
 }
+
+@media screen and (min-width: 960px) {
+    .Container{
+        padding-bottom: 133px;
+    }
+}

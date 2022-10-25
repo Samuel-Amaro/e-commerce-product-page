@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Slide from "./Slide";
 import "./LightboxGallery.css";
+import DemoThumbnail from "./DemoThumbnail";
 
 export default function LightboxGallery(props) {
   let count = 1;
@@ -41,28 +42,22 @@ export default function LightboxGallery(props) {
           );
         })}
       </ul>
-      <ul className="Product-Images__list-Demos">
-        {props.dataSlide.map((data) => {
-          count += 1;
-          return (
-            <li
-              className="Product-Images__item-Demo"
-              key={count}
-              tabIndex="0"
-              title="Toggle to image"
-              onPointerDown={(event) => {
-                setCurrentSlide(data.index)
-              }}
-              onKeyDown={(event) => {
-                if (event.code === "Enter") {
-                  setCurrentSlide(data.index);
-                }
-              }}
-            >
-              <img src={data.thumbnail} alt="" aria-hidden="true" />
-            </li>
-          );
-        })}
+      <ul
+        className={"Product-Images__list-Demos"}
+      >
+        {
+          props.dataSlide.map((data) => {
+            return (
+              <DemoThumbnail
+                setCurrentSlide={setCurrentSlide}
+                index={data.index}
+                thumbnail={data.thumbnail}
+                keyItem={data.index}
+                slideIndex={slideIndex}
+              />
+            );
+          })
+        }
       </ul>
     </div>
   );

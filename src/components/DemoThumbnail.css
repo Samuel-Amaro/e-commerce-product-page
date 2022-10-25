@@ -1,0 +1,32 @@
+
+@media screen and (min-width: 401px) {
+  
+  .Product-Images__item-Demo {
+    flex: 0 0 88px;
+  }
+
+  .Product-Images__item-Demo:hover{
+    cursor: pointer;
+  }
+
+  .Product-Images__item-Demo:focus img,
+  .Product-Images__item-Demo:hover img{
+    opacity: 0.6;
+  }
+
+  .Product-Images__item-Demo_active {
+    border: 2px solid #d8874f;
+    border-radius: 10px;
+  }
+
+  .Product-Images__item-Demo_active img{
+    /*border: 2px solid #d8874f;*/
+    opacity: 0.2;
+  }
+
+  .Product-Images__item-Demo img {
+    display: block;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+}

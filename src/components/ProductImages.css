@@ -1,3 +1,9 @@
 .Product-Images {
   margin-bottom: 23.5px;
 }
+
+@media screen and (min-width: 960px) {
+  .Product-Images {
+    margin-bottom: 0;
+  }
+}

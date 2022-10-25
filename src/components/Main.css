@@ -141,7 +141,51 @@
 @media screen and (min-width: 960px) {
   .Main__content {
     max-width: 445px;
-    padding: 0 0px;
+    padding: 62px 0;
     margin: 0 auto;
+  }
+
+  .Main {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(min-content, 1fr));
+  }
+
+  .Main__product-Brand {
+    padding: 0 0 0 0;
+    font-size: 0.85rem;
+    margin-bottom: 19px;
+  }
+
+  .Main__title {
+    font-size: 2.75rem;
+    margin-bottom: 34px;
+    line-height: 1.1;
+  }
+
+  .Main__description {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 26px;
+  }
+
+  .Main__prices {
+    display: block;
+    margin-bottom: 38px;
+  }
+
+  .Main__row {
+    margin-bottom: 11px;
+  }
+
+  .Main__orders {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 17px;
+  }
+
+  .Main__product-Quantity {
+    padding: 19px 16px 19px 16px;
+    margin-bottom: 0;
+    gap: 45px;
   }
 }
