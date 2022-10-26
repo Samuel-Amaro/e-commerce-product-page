@@ -66,6 +66,7 @@ Users should be able to:
   - [Hooks](https://reactjs.org/docs/hooks-intro.html) - Hooks React
 - [Bem Metodology CSS](https://getbem.com/introduction/) - BEM Metodology CSS
 - Web Acessibility(Wai-arias, roles)
+- Normalize CSS
 
 #### Getting Started with Create React App
 
