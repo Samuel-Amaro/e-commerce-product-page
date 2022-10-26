@@ -5,23 +5,23 @@ import "./Slider.css";
 export default function Slider(props) {
   const slider = useRef(null);
 
-  function setCurrentSlide(event) {
-    if (event.target.classList.contains("Product-Images__button-Next-Slide")) {
-      if (
-        slider.current.scrollLeft ===
-        (slider.current.scrollWidth - slider.current.offsetWidth)
-      ) {
-        slider.current.scrollLeft = 0;
-      } else {
-        slider.current.scrollLeft += slider.current.offsetWidth;
-      }
-    }else{
-      if (slider.current.scrollLeft === 0) {
-        slider.current.scrollLeft = slider.current.scrollWidth;
-      }else{
-        slider.current.scrollLeft -= slider.current.offsetWidth;
-      } 
+  function nextSlide(event) {
+    if (
+      slider.current.scrollLeft ===
+      slider.current.scrollWidth - slider.current.offsetWidth
+    ) {
+      slider.current.scrollLeft = 0;
+    } else {
+      slider.current.scrollLeft += slider.current.offsetWidth;
     }
+  }
+
+  function previousSlide(event) {
+    if (slider.current.scrollLeft === 0) {
+      slider.current.scrollLeft = slider.current.scrollWidth;
+    } else {
+      slider.current.scrollLeft -= slider.current.offsetWidth;
+    } 
   }
 
   return (
@@ -37,11 +37,11 @@ export default function Slider(props) {
         value="Previous Slide"
         title="Previous Image Product"
         onPointerDown={(event) => {
-          setCurrentSlide(event);
+          previousSlide(event);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") {
-            setCurrentSlide(event);
+            previousSlide(event);
           }
         }}
       ></button>
@@ -68,11 +68,11 @@ export default function Slider(props) {
         value="Next Slide"
         title="Next Image Product"
         onPointerDown={(event) => {
-          setCurrentSlide(event);
+          nextSlide(event);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight") {
-            setCurrentSlide(event);
+            nextSlide(event);
           }
         }}
       ></button>
