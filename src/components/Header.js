@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import profile from "../images/image-avatar.png";
 import iconMenu from "../images/icon-menu.svg";
 import "./Header.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import imgProduct from "../images/image-product-1.jpg";
 import iconDelete from "../images/icon-delete.svg";
 

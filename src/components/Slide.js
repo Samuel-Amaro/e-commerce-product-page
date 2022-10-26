@@ -1,4 +1,5 @@
 import "./Slide.css";
+import React from "react";
 
 export default function Slide(props) {
     return (

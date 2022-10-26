@@ -1,33 +1,26 @@
-import React, { useRef, useState } from "react";
+import React, { useRef} from "react";
 import Slide from "./Slide";
 import "./Slider.css";
 
 export default function Slider(props) {
   const slider = useRef(null);
-  let count = 0;
-  const storageSlidesCarrousel = props.dataSlide.map((data) => {
-    count += 1;
-    return (
-      <li className="Product-Images-item-Image" key={count}>
-        <Slide imageSlide={data.url} descriptionImage={data.descriptionImage} />
-      </li>
-    );
-  });
-  const [currentIndexCarrousel, setCurrentIndexCarrousel] = useState(0);
-  const [slides, setSlides] = useState([storageSlidesCarrousel[currentIndexCarrousel]]);
 
-  function setCurrentSlide(index) {
-    //vai para o primeiro slide
-    if(index > (storageSlidesCarrousel.length - 1)) {
-      setCurrentIndexCarrousel(0);
-      setSlides([storageSlidesCarrousel[0]]);
-    }else if (index < 0) {
-      //vai para o ultimo slide
-      setCurrentIndexCarrousel(storageSlidesCarrousel.length - 1);
-      setSlides([storageSlidesCarrousel[storageSlidesCarrousel.length - 1]]);
+  function setCurrentSlide(event) {
+    if (event.target.classList.contains("Product-Images__button-Next-Slide")) {
+      if (
+        slider.current.scrollLeft ===
+        (slider.current.scrollWidth - slider.current.offsetWidth)
+      ) {
+        slider.current.scrollLeft = 0;
+      } else {
+        slider.current.scrollLeft += slider.current.offsetWidth;
+      }
     }else{
-      setCurrentIndexCarrousel(index);
-      setSlides([storageSlidesCarrousel[index]]);
+      if (slider.current.scrollLeft === 0) {
+        slider.current.scrollLeft = slider.current.scrollWidth;
+      }else{
+        slider.current.scrollLeft -= slider.current.offsetWidth;
+      } 
     }
   }
 
@@ -44,11 +37,11 @@ export default function Slider(props) {
         value="Previous Slide"
         title="Previous Image Product"
         onPointerDown={(event) => {
-          setCurrentSlide(currentIndexCarrousel - 1);
+          setCurrentSlide(event);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") {
-            setCurrentSlide(currentIndexCarrousel - 1);
+            setCurrentSlide(event);
           }
         }}
       ></button>
@@ -57,7 +50,16 @@ export default function Slider(props) {
         ref={slider}
         aria-label="List All images from products"
       >
-        {slides}
+        {props.dataSlide.map((data, index) => {
+          return (
+            <li className="Product-Images-item-Image" key={index}>
+              <Slide
+                imageSlide={data.url}
+                descriptionImage={data.descriptionImage}
+              />
+            </li>
+          );
+        })}
       </ul>
       <button
         type="button"
@@ -66,11 +68,11 @@ export default function Slider(props) {
         value="Next Slide"
         title="Next Image Product"
         onPointerDown={(event) => {
-          setCurrentSlide(currentIndexCarrousel + 1);
+          setCurrentSlide(event);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight") {
-            setCurrentSlide(currentIndexCarrousel + 1);
+            setCurrentSlide(event);
           }
         }}
       ></button>

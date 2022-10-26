@@ -1,20 +1,12 @@
 import "./ModalGalleryLightbox.css";
-import DemoThumbnail from "./DemoThumbnail";
-import imageTeste from "../images/image-product-1.jpg";
-import React, {useState} from "react";
+import React, { useState} from "react";
 import Slide from "./Slide";
 
 export default function ModalGalleryLightbox(props) {
-  let count = 0;
   const storageSlidesCarrousel = props.dataSlide.map((data) => {
-    count += 1;
-    let image = new Image();
-    image.src = data.url;
-    image.alt = data.descriptionImage;
-
     return (
-      <div className="ModalGalleryLightbox__item-Image" key={count}>
-        <Slide imageSlide={image.src} descriptionImage={image.alt} />
+      <div className="ModalGalleryLightbox__item-Image">
+        <Slide imageSlide={data.url} descriptionImage={data.descriptionImage} />
       </div>
     );
   });
@@ -44,6 +36,7 @@ export default function ModalGalleryLightbox(props) {
         <button
           className="ModalGalleryLightbox__btn-Close"
           type="button"
+          title="Close Modal Gallery Lightbox"
           aria-label="Button Close Modal Gallery Lightbox"
           onPointerDown={(event) => {
             props.setImageIsPressed(false);
@@ -55,13 +48,11 @@ export default function ModalGalleryLightbox(props) {
           }}
         ></button>
         <div
-          className="ModalGalleryLightbox__list-Images-Product"
-          //ref={slider}
+          className="ModalGalleryLightbox__slider"
           aria-label="List All images from products"
           aria-live="assertive"
           aria-atomic="true"
         >
-          {slides}
           <button
             type="button"
             className="ModalGalleryLightbox__button-Previous-Slide"
@@ -77,6 +68,13 @@ export default function ModalGalleryLightbox(props) {
               }
             }}
           ></button>
+          <div
+            className="ModalGalleryLightbox__list-Images-Product"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            {slides}
+          </div>
           <button
             type="button"
             className="ModalGalleryLightbox__button-Next-Slide"
@@ -93,16 +91,29 @@ export default function ModalGalleryLightbox(props) {
             }}
           ></button>
         </div>
-        <ul className={"Product-Images__list-Demos"}>
+        <ul className={"ModalGalleryLightbox__list-Demos"}>
           {props.dataSlide.map((data, index) => {
             return (
-              <DemoThumbnail
-                //setCurrentSlide={setCurrentSlide}
-                index={data.index}
-                thumbnail={data.thumbnail}
+              <li
+                className={
+                  currentIndexCarrousel === data.index
+                    ? "ModalGalleryLightbox__item-Demo ModalGalleryLightbox__item-Demo_active"
+                    : "ModalGalleryLightbox__item-Demo"
+                }
+                tabIndex="0"
                 key={index}
-                //slideIndex={slideIndex}
-              />
+                title="Toggle to image"
+                onPointerDown={(event) => {
+                  setCurrentSlide(data.index);
+                }}
+                onKeyDown={(event) => {
+                  if (event.code === "Enter") {
+                    setCurrentSlide(data.index);
+                  }
+                }}
+              >
+                <img src={data.thumbnail} alt="" aria-hidden="true" />
+              </li>
             );
           })}
         </ul>

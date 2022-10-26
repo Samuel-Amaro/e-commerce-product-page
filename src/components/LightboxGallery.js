@@ -39,6 +39,7 @@ export default function LightboxGallery(props) {
             <div
               className="Product-Images-item-Lightbox"
               title="Open Lightbox Gallery Images"
+              tabIndex="0"
               aria-label="Open Lightbox Gallery Images"
               aria-live="assertive"
               aria-atomic="true"
