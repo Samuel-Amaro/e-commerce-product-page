@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.8);
     position: absolute; /*fixed*/
     width: 100%;
-    height: auto;
+    height: 100%; /*auto*/
     top: 0;
     left: 0;
     z-index: 1100;
