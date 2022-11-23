@@ -5,7 +5,7 @@ import Slide from "./Slide";
 export default function ModalGalleryLightbox(props) {
   const storageSlidesCarrousel = props.dataSlide.map((data) => {
     return (
-      <div className="ModalGalleryLightbox__item-Image">
+      <div className="ModalGalleryLightbox__item-Image" key={`slide-lightbox-${data.index}`}>
         <Slide imageSlide={data.url} descriptionImage={data.descriptionImage} />
       </div>
     );
@@ -91,8 +91,8 @@ export default function ModalGalleryLightbox(props) {
             }}
           ></button>
         </div>
-        <ul className={"ModalGalleryLightbox__list-Demos"}>
-          {props.dataSlide.map((data, index) => {
+        <ul className={"ModalGalleryLightbox__list-Demos"} aria-label="list from thumbnails from images a open">
+          {props.dataSlide.map((data) => {
             return (
               <li
                 className={
@@ -100,8 +100,7 @@ export default function ModalGalleryLightbox(props) {
                     ? "ModalGalleryLightbox__item-Demo ModalGalleryLightbox__item-Demo_active"
                     : "ModalGalleryLightbox__item-Demo"
                 }
-                tabIndex="0"
-                key={index}
+                key={`slide-${data.index + 15}`}
                 title="Toggle to image"
                 onPointerDown={(event) => {
                   setCurrentSlide(data.index);

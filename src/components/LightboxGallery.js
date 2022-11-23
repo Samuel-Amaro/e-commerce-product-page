@@ -32,9 +32,8 @@ export default function LightboxGallery(props) {
 
   return (
     <div className="Product-Images__lightbox-Gallery">
-      {/*cada clique em um demo tem que correponder a uma imagem de produto clicado*/}
       <div className="Product-Images__list-Images-Lightbox">
-        {slides.map((slideElem) => {
+        {slides.map((slideElem, index) => {
           return (
             <div
               className="Product-Images-item-Lightbox"
@@ -52,6 +51,7 @@ export default function LightboxGallery(props) {
                   setImageIsPressed(true);
                 }
               }}
+              key={`slides-lighbox-gallery-${index}`}
             >
               {slideElem}
             </div>
@@ -59,16 +59,14 @@ export default function LightboxGallery(props) {
         })}
       </div>
       <ul className={"Product-Images__list-Demos"}>
-        {props.dataSlide.map((data, index) => {
-          return (
-            <DemoThumbnail
+        {props.dataSlide.map((data) => {
+            return <DemoThumbnail
               setCurrentSlide={setCurrentSlide}
-              index={data.index}
+              indexThumbnail={data.index}
+              key={`thumbnail-${data.index}`}
               thumbnail={data.thumbnail}
-              key={index}
               slideIndex={slideIndex}
             />
-          );
         })}
       </ul>
       {imageIsPressed ? (
