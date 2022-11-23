@@ -21,7 +21,7 @@ export default function DemoThumbnail(props) {
           }
         }}
       >
-        <img src={props.thumbnail} alt="" aria-hidden="true" />
+        <img src={`${process.env.PUBLIC_URL}${props.thumbnail}`} alt="" aria-hidden="true" />
       </li>
     );
 }

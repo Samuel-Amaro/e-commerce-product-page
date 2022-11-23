@@ -112,7 +112,11 @@ export default function ModalGalleryLightbox(props) {
                   }
                 }}
               >
-                <img src={data.thumbnail} alt="" aria-hidden="true" />
+                <img
+                  src={`${process.env.PUBLIC_URL}${data.thumbnail}`}
+                  alt=""
+                  aria-hidden="true"
+                />
               </li>
             );
           })}
